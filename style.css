@@ -1,0 +1,358 @@
+:root {
+    --almost-white: hsl(0, 0%, 98%);
+    --medium-gray: hsl(0, 0%, 41%);
+    --almost-black: hsl(0, 0%, 8%);
+}
+
+.epilogue-medium {
+    font-family: "Epilogue", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.epilogue-bold {
+    font-family: "Epilogue", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+button {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    /* color: inherit; */
+    background-color: transparent;
+}
+
+body {
+    max-width: 1440px;
+    height: 900px;
+    font-size: 1.125rem;
+    margin: 0 auto;
+    color: var(--almost-black);
+    background-color: var(--almost-white);
+}
+
+img {
+    /* Чтобы ширина не выходила за экран изображения */
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header__container {
+    max-width: 1390px;
+    margin: 0 auto;
+    padding: 55px 15px 130px;
+    display: flex;
+    align-items: center;
+    column-gap: 60px;
+}
+
+.logo {
+    display: block;
+    /* чтобы был просвет между меню и выпадающим меню */
+    padding-bottom: 20px;
+}
+
+.header__wrapper {
+    display: flex;
+    align-items: center;
+    flex-basis: 1215px;
+}
+
+.header__menu-list {
+    position: relative;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.menu__item {
+    position: relative;
+}
+
+.menu__item:nth-child(-n+2) {
+    margin-right: 20px;
+}
+
+.menu__link {
+    display: block;
+    color: var(--medium-gray);
+    /* чтобы был просвет между меню и выпадающим меню */
+    padding-bottom: 20px;
+    transition: text-shadow .4s ease;
+}
+
+/* иконки для выпадающего меню */
+.menu__link:nth-child(-n+2) img {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.menu__link:nth-child(-n+2) .icon-up {
+    display: none;
+}
+
+/* Выпадающее меню */
+.header__submenu {
+    position: absolute;
+    left: -55px;
+    width: 155px;
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
+    display: none;
+}
+
+.header__submenu.header__submenu-icons {
+    width: 120px;
+    left: 0px;
+}
+
+.header__submenu li {
+    padding-top: 20px;
+    padding-left: 25px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+.header__submenu li:last-child {
+    padding-bottom: 25px;
+}
+
+.header__submenu li a {
+    font-size: 0.9375rem;
+    display: block;
+    color: var(--medium-gray);
+}
+
+/* Ховер эффект для выпадающего меню с сменой иконок */
+.menu__item:hover>.header__submenu {
+    display: block;
+}
+.menu__item:hover>.menu__link:nth-child(-n+2) .icon-down {
+    display: none;
+}
+.menu__item:hover>.menu__link:nth-child(-n+2) .icon-up {
+    display: inline-block;
+}
+
+.header__btn {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding-bottom: 20px;
+}
+
+.header__btn-login {
+    color: var(--medium-gray);
+    transition: text-shadow .4s ease;
+}
+
+.menu__link:hover,
+.header__btn-login:hover {
+    text-shadow: 0px 0px 1px var(--almost-black);
+       /* При использование font-weight: 700; происходит
+    движение ссылок и движение самого меню при наведение курсора */
+}
+
+.header__tbn-reg {
+    border: 1px solid var(--medium-gray);
+    color: var(--medium-gray);
+    font-size: 1.125rem;
+    width: 105px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    transition: all .4s ease;
+}
+
+.header__tbn-reg:hover {
+    border: 2px solid var(--almost-black);
+    text-shadow: 0px 0px 1px var(--almost-black);
+}
+
+.header__burger-open,
+.header__icon-close {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.backdrop {
+    display: none;
+}
+
+@media(max-width: 800px) {
+    body {
+        width: 375px;
+        min-height: 780px;
+    }
+
+    .header__container {
+        display: block;
+        width: 340px;
+        height: 100vh;
+        padding: 20px 20px 25px 15px;
+        position: sticky;
+    }
+
+    .logo {
+        display: block;
+        padding-bottom: 0;
+    }
+
+    .header__menu {
+        padding-left: 25px;
+        margin-bottom: 45px;
+    }
+
+    header .header__wrapper {
+        position: fixed;
+        width: 240px;
+        height: 100vh;
+        top: 0;
+        right: -240px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 82px;
+        padding-left: 20px;
+        background-color: hsl(0, 0%, 100%);
+        z-index: 99;
+    }
+
+    header .header__wrapper.active {
+        right: 0;
+    }
+
+    .header__burger-open {
+        display: block;
+    }
+
+    .header__burger-open.active {
+        display: none;
+    }
+
+    .header__icon-close {
+        display: none;
+    }
+
+    .header__icon-close.active {
+        display: inline-block;
+        z-index: 100;
+    }
+
+    .header__menu-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+    }
+
+    .header__submenu {
+        position: relative;
+        background-color: inherit;
+        left: 10px;
+        width: 120px;
+        box-shadow: none;
+    }
+
+    .header__submenu li:last-child {
+        padding-bottom: 0;
+    }
+
+    .menu__item:nth-child(-n+2) {
+        margin-right: 0;
+    }
+
+    .menu__link {
+        padding-bottom: 0;
+    }
+
+    .header__btn {
+        margin-left: 0;
+        display: block;
+        text-align: center;
+    }
+
+    .header__tbn-reg {
+        width: 195px;
+        margin: 15px 20px 0 25px;
+    }
+
+/* Затемненный фон при мобильной версии */
+    .backimage.active {
+        border: 2px solid green;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: var(--almost-black);
+        opacity: .5;
+        height: 100vh;
+        width: 100vw;
+        z-index: 90;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
